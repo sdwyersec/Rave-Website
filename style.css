@@ -1,1 +1,56 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+/* Body styling */
+body {
+    background-color: black;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Green horizontal static */
+body::before, body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(0deg, rgba(0, 255, 0, 0.6) 2px, transparent 6px);
+    background-size: 100% 6px; /* Horizontal line spacing */
+    animation: pixelNoise 0.3s infinite steps(2), flicker 0.2s infinite alternate;
+    opacity: 0.25;
+    mix-blend-mode: difference;
+}
+
+/* Second static layer with different spacing */
+body::after {
+    background: 
+        repeating-linear-gradient(0deg, rgba(0, 255, 0, 0.4) 2px, transparent 8px);
+    background-size: 100% 8px;
+    animation: pixelNoise 0.35s infinite steps(3) reverse, flicker 0.15s infinite alternate;
+    opacity: 0.25;
+}
+
+/* Subtle noise movement */
+@keyframes pixelNoise {
+    0% { transform: translateY(0); }
+    25% { transform: translateY(-1px); }
+    50% { transform: translateY(1px); }
+    75% { transform: translateY(-2px); }
+    100% { transform: translateY(2px); }
+}
+
+/* Flickering */
+@keyframes flicker {
+    0% { opacity: 0.2; }
+    50% { opacity: 0.3; }
+    100% { opacity: 0.25; }
+}
