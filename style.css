@@ -12,9 +12,12 @@ body {
     width: 100vw;
     overflow: hidden;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Green horizontal static */
+/* Green horizontal static background */
 body::before, body::after {
     content: "";
     position: absolute;
@@ -39,7 +42,7 @@ body::after {
     opacity: 0.25;
 }
 
-/* Subtle noise movement */
+/* Noise movement */
 @keyframes pixelNoise {
     0% { transform: translateY(0); }
     25% { transform: translateY(-1px); }
@@ -53,4 +56,28 @@ body::after {
     0% { opacity: 0.2; }
     50% { opacity: 0.3; }
     100% { opacity: 0.25; }
+}
+
+/* Black box*/
+.box {
+    width: 750px;
+    height: 600px;
+    background-color: black;
+    position: relative;
+    z-index: 10; 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8), /* Defined, close black shadow */
+                0 8px 20px rgba(0, 0, 0, 0.6),  /* Slightly larger but defined */
+                0 10px 25px rgba(0, 0, 0, 0.5); /* A sharp outer shadow */
+    border-radius: 1px; /* Slightly round edges */
+}
+
+/* Green line in box */
+.box::before {
+    content: "";
+    position: absolute;
+    top: 20%; /* Line height position */
+    left: 0;
+    width: 100%; /* Width of box */
+    height: 2.5px; /* Line thickness */
+    background-color: rgba(0, 255, 0, 0.44); 
 }
